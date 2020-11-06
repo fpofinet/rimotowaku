@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+       
+         <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css" >
+        {% block stylesheets %}
+            {{  encore_entry_link_tags('app')  }}
+        {% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{path ('home')}}">RIMOTOWAKU</a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+               
+            </ul>
+        </div>
+    </nav>
+   
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-4 sidebar1">
+                <div class="logo">
+                    <img src="http://lorempixel.com/output/people-q-g-64-64-1.jpg" class="img-responsive center-block" alt="Logo">
+                </div>
+                <br>
+                <div class="left-navigation">
+                    <ul class="list">
+                        <h5><strong>WHEREABOUTS</strong></h5>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="{{path ('home')}}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="{{path ('admin')}}">Utilisateurs</a>
+                        </li>
+                       <li class="nav-item">
+                            <a class="nav-link " href="{{path ('add_user')}}">Nouvel Utilisateur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{path ('login_route')}}">connexion</a>
+                        </li>
+                    </ul>
+
+                   
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-8 main-content">
+                <!--Main content code to be written here --> 
+                <div class="col-8">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+         
+    
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    </body>
+</html>

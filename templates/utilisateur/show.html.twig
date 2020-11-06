@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section> 
+    <article>
+        <h2>nom de l'utilisateur {{utilisateur.nom}} </h2>
+        <p> prenom : {{utilisateur.prenom}}</p>
+        <p> naissance : {{utilisateur.dateNaissance | date("Y/m/d")}}</p>
+        <p> fonction : {{utilisateur.fonction}}</p>
+        <p> email : {{utilisateur.email}}</p>
+        <p> pass : {{utilisateur.motDePasse}} </p>
+         
+    </article>
+</section>
+{% endblock %}

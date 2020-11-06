@@ -1,0 +1,56 @@
+#formDiv{
+    background-color:#00003f;
+    border: solid 1px black;
+    border-radius: 15px;
+    margin-top:20px;
+    color: #ffffff;
+    /*padding-bottom: 15px;*/
+}
+#userInfo{
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-top: 25px;
+    background-color:white;
+    height: 100%;
+}
+#headFlag{
+    display: block; 
+    width: 100%;
+    background-color:#00003f;
+    color: #ffffff;
+    border-radius: 5px;
+
+}
+#body{
+    margin-top: 25px;
+   
+}
+html,body{
+    margin: 0px;
+    display: table;
+    height: 100%;
+    width : 100%; 
+    background-color:#EFEFEF;  
+}
+footer{
+    display: table-row;
+    height: 100px;
+    background-color:#00003f;
+    color:#ffffff;
+
+}
+#bodyForm{
+    margin-left: 40px;
+
+    margin-bottom: 30px;
+    padding: 20px;
+    border: solid 1px black;
+    border-radius: 15px;
+    background-color:#00003f;
+    color:#ffffff;
+
+}
+#textContent{
+    display: inline-block;
+    
+}

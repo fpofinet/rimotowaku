@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    {% if editState %}
+         <h1> MODIFIER UTILISATEUR </h1>
+        {% else %}
+            <h1> AJOUTER NOUVEL UTILISATEUR </h1>
+        </button>
+        {% endif %}
+    
+    {{form_start(formUser)}}
+
+    {{form_widget(formUser)}}
+    
+
+    <button class="btn btn-primary"> 
+        {% if editState %}
+            Modifier
+        {% else %}
+            Enregistrer 
+        </button>
+        {% endif %}
+    {{form_end(formUser)}}
+    
+{% endblock %}

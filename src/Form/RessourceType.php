@@ -2,26 +2,21 @@
 
 namespace App\Form;
 
-use App\Entity\Utilisateurs;
+use App\Entity\Ressource;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class InscriptionType extends AbstractType
+class RessourceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('dateNaissance')
-            ->add('email')
-            ->add('fonction')
-            ->add('profil', FileType::class, [
-                'label' => 'profil',
+            ->add('nomRessource')
+            ->add('chemin', FileType::class, [
+                'label' => 'fichier',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -39,15 +34,13 @@ class InscriptionType extends AbstractType
                     ])
                 ],
             ])
-            ->add('motDePasse',PasswordType::class)
-            ->add('confirm_mdp',PasswordType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Utilisateurs::class,
+            'data_class' => Ressource::class,
         ]);
     }
 }

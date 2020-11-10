@@ -2,15 +2,13 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
+class UtilisateursFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker= Factory::create();
         // $product = new Product();
         // $manager->persist($product);
 

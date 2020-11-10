@@ -10,7 +10,9 @@ use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -39,8 +41,8 @@ class UtilisateurController extends AbstractController
      * @Route("/admin/nouvelUtilisateur", name="add_user")
      * @Route("/admin/{id}/modification", name="edit_user")
      */
-    public function addOrUpdateUtilisateur(Utilisateurs $user=null,Request $request
-                                            ,UserPasswordEncoderInterface $encoder)
+    public function addOrUpdateUtilisateur(Utilisateurs $user=null,Request $request,UserPasswordEncoderInterface $encoder,
+                                            SluggerInterface $slugger)
     {
         $manager = $this->getDoctrine()->getManager();
         if(!$user){
@@ -51,9 +53,32 @@ class UtilisateurController extends AbstractController
         $form->handleRequest( $request);
         //validation du formulaire
         if( $form->isSubmitted() &&  $form->isValid()){
+            $profil = $form->get('profil')->getData();
+            if ($profil) {
+                $originalFilename = pathinfo($profil->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$profil->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $profil->move(
+                        $this->getParameter('profil_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'profilname' property to store the PDF file name
+                // instead of its contents
+                $user->setProfil($newFilename);
+            }
+
             if(!$user->getId()){
                 $user->setCreatedAtU(new \DateTime());
             }
+
             $hash= $encoder->encodePassword($user,$user->getMotDePasse());
             $user->setMotDePasse($hash);
             $manager->persist( $user);

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UtilisateursRepository;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -68,6 +70,21 @@ class Utilisateurs  implements UserInterface
      * @Assert\EqualTo(propertyPath="motDePasse", message="les mots de passe ne sont pas identiques ")
      */
     public $confirm_mdp;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Ressource::class, mappedBy="auteur")
+     */
+    private $ressources;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $profil;
+
+    public function __construct()
+    {
+        $this->ressources = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -167,4 +184,47 @@ class Utilisateurs  implements UserInterface
 
     public function getUsername(){} 
     public function eraseCredentials(){}
+
+    /**
+     * @return Collection|Ressource[]
+     */
+    public function getRessources(): Collection
+    {
+        return $this->ressources;
+    }
+
+    public function addRessource(Ressource $ressource): self
+    {
+        if (!$this->ressources->contains($ressource)) {
+            $this->ressources[] = $ressource;
+            $ressource->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRessource(Ressource $ressource): self
+    {
+        if ($this->ressources->removeElement($ressource)) {
+            // set the owning side to null (unless already changed)
+            if ($ressource->getAuteur() === $this) {
+                $ressource->setAuteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getProfil(): ?string
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?string $profil): self
+    {
+        $this->profil = $profil;
+
+        return $this;
+    }
+    
 }

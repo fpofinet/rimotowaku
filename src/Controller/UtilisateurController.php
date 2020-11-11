@@ -26,12 +26,11 @@ class UtilisateurController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Utilisateurs::class);
         $listeUtilisateur= $repo->findAll();
         return $this->render('utilisateur/index.html.twig', [
-            'controller_name' => 'UtilisateurController',
             'utilisateurs'  => $listeUtilisateur
         ]);
     }
     /**
-     * @Route("/", name="home")
+     * @Route("/home/s", name="homes")
      */
     public function home(){
         return $this->render('utilisateur/home.html.twig');

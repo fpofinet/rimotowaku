@@ -16,12 +16,14 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class RessourceController extends AbstractController
 {
     /**
-     * @Route("/ressource", name="ressource")
+     * @Route("/home", name="home")
      */
-    public function index(): Response
+    public function show(): Response
     {
-        return $this->render('ressource/index.html.twig', [
-            'controller_name' => 'RessourceController',
+        $repo = $this->getDoctrine()->getRepository(Ressource::class);
+        $ressources= $repo->findAll();
+        return $this->render('utilisateur/home.html.twig', [
+            'ressources' => $ressources
         ]);
     }
     /**
@@ -72,13 +74,17 @@ class RessourceController extends AbstractController
             $manager->persist( $ressource);
             $manager->flush();
              
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('detail_ressource');
         }
         return $this->render('ressource/index.html.twig',[
             'formres' => $formRessource->createView(),
             'editState' => $ressource->getId() !==null
             ]);
-       
-
+    }
+    /**
+     * @Route("/fichier/details", name="detail_ressource")
+     */
+    public function showDetails(){
+        return $this->render('ressource/details.html.twig');
     }
 }

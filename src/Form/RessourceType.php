@@ -14,7 +14,7 @@ class RessourceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomRessource')
+            ->add('nomRessource' )
             ->add('chemin', FileType::class, [
                 'label' => 'fichier',
 

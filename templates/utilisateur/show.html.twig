@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<section> 
-    <article>
-        <h2>nom de l'utilisateur {{utilisateur.nom}} </h2>
-        <p> prenom : {{utilisateur.prenom}}</p>
-        <p> naissance : {{utilisateur.dateNaissance | date("Y/m/d")}}</p>
-        <p> fonction : {{utilisateur.fonction}}</p>
-        <p> email : {{utilisateur.email}}</p>
-        <p> pass : {{utilisateur.motDePasse}} </p>
-        <a href="{{ asset('uploads/profils/' ~ utilisateur.profil) }}">View brochure (PDF)</a>
-         
-    </article>
-</section>
+<div class="row">
+    <div class="container col-6 mt-5"> 
+        <div class="card rounded shadow">
+            <img class="img-card-top" src="https://place-hold.it/500x300"/>
+            <div class="card-body">
+                <p>nom : {{utilisateur.nom}} </p>
+                <p> prenom : {{utilisateur.prenom}}</p>
+                <p> date de naissance : {{utilisateur.dateNaissance | date("Y/m/d")}}</p>
+                <p> fonction : {{utilisateur.fonction}}</p>
+                <p> email : {{utilisateur.email}}</p>
+                <a href="{{ path("show_user",{'id':utilisateur.id})  }}" class="btn btn-info"> modifier mon profil </a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

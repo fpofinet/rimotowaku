@@ -1,25 +1,37 @@
 {% extends "base.html.twig" %}
-{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+
+
 {% block body %}
-    {% if editState %}
-         <h1> MODIFIER UTILISATEUR </h1>
-        {% else %}
-            <h1> AJOUTER NOUVEL UTILISATEUR </h1>
-        </button>
-        {% endif %}
-    
-    {{form_start(formUser)}}
-
-    {{form_widget(formUser)}}
-    
-
-    <button class="btn btn-primary"> 
+<div class="row m-5">
+  
+    <div class="container col-lg-8 col-md-8 col-sm-10 col-12 border rounded shadow py-3">
         {% if editState %}
-            Modifier
+            <span style="font-size:3vw; mx-3"> MODIFIER UTILISATEUR </span>
         {% else %}
-            Enregistrer 
-        </button>
+            <span style="font-size:3vw;  mx-3"> AJOUTER NOUVEL UTILISATEUR </span>
         {% endif %}
-    {{form_end(formUser)}}
-    
+        {{form_start(formUser)}}
+        {{form_row(formUser.nom)}}
+        {{form_row(formUser.prenom)}}
+        {{form_row(formUser.dateNaissance)}}
+
+       <span class="text-info"> {{ form_errors(formUser.email) }}</span>
+        {{form_row(formUser.email)}}
+        {{form_row(formUser.fonction)}}
+        {{form_row(formUser.profil)}}
+        {{form_row(formUser.motDePasse)}}
+        {{form_row(formUser.confirm_mdp, {'label': 'Confirmez mot de passe'})}}
+        {#{form_widget(formUser)}#}
+        
+
+        <button class="btn btn-primary"> 
+            {% if editState %}
+                Modifier
+            {% else %}
+                Enregistrer 
+            </button>
+            {% endif %}
+        {{form_end(formUser)}}
+    </div>
+</div>
 {% endblock %}

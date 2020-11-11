@@ -82,9 +82,14 @@ class RessourceController extends AbstractController
             ]);
     }
     /**
-     * @Route("/fichier/details", name="detail_ressource")
+     * @Route("/fichier/details/{idr}", name="detail_ressource")
      */
-    public function showDetails(){
-        return $this->render('ressource/details.html.twig');
+    public function showDetails($idr){
+        $repo = $this->getDoctrine()->getRepository(Ressource::class);
+        $ressource= $repo->find($idr);
+        return $this->render('ressource/details.html.twig',[
+            'ressource' => $ressource
+        ]);
     }
+    
 }

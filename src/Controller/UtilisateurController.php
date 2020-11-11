@@ -30,10 +30,10 @@ class UtilisateurController extends AbstractController
         ]);
     }
     /**
-     * @Route("/home/s", name="homes")
+     *
      */
     public function home(){
-        return $this->render('utilisateur/home.html.twig');
+       // return $this->render('utilisateur/home.html.twig');
     }
         // cette methode permet d'ajouter ou de modifier un utilisateur
     /**
@@ -94,7 +94,7 @@ class UtilisateurController extends AbstractController
     // cette methode permet d'afficher un utilisateur par son id
 
     /**
-     * @Route("/admin/{id}", name="show_user")
+     * @Route("/utilisateur/{id}", name="show_user")
      */
     public function showOne($id){
         $repo = $this->getDoctrine()->getRepository(Utilisateurs::class);

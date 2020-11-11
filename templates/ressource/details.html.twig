@@ -7,9 +7,9 @@
             <div class="card shadow">
                 <img class="img-card-top" src="https://place-hold.it/500x300"/>
                 <div class="card-body">
-                    <p> Nom du fichier : rapport merge</p>
-                    <p> Auteur : ginie</p>
-                    <p> Date publication : 01/01/2020 </p>
+                    <p> Nom du fichier : {{ressource.nomRessource}}</p>
+                    <p> Auteur :<a href={{ path("show_user", {'id':ressource.auteur.id})  }}> {{ressource.auteur.nom}} </a></p>
+                    <p> Date publication : </p>
                 </div>
             </div>
         </div>

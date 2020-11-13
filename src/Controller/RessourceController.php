@@ -61,10 +61,13 @@ class RessourceController extends AbstractController
                 // instead of its contents
                 $ressource->setChemin($newFilename);
             }
-
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            $logged_user= $this->getUser();
+           // dd($logged_user);
+           // dump($logged_user);
             if(!$ressource->getId()){
                 $repo = $this->getDoctrine()->getRepository(Utilisateurs::class);
-                $auteur=$repo->findOneBy(['nom' => 'barna']);
+                $auteur=$repo->findOneBy(['id' => $logged_user->getId()]);
 
 
                 $ressource->setCreatedAt(new \DateTime());

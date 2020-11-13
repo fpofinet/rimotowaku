@@ -10,7 +10,7 @@
                 <p> date de naissance : {{utilisateur.dateNaissance | date("Y/m/d")}}</p>
                 <p> fonction : {{utilisateur.fonction}}</p>
                 <p> email : {{utilisateur.email}}</p>
-                <a href="{{ path("show_user",{'id':utilisateur.id})  }}" class="btn btn-info"> modifier mon profil </a>
+                <a href="{{ path("edit_user",{'id':utilisateur.id})  }}" class="btn btn-info"> modifier mon profil </a>
             </div>
         </div>
     </div>

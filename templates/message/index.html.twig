@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Discussions {% endblock %}
+
+{% block body %}
+
+<div class="row m-0">
+    <div class="container col-sm-10 col-11 mt-5">
+        {% for i in 0..10 %}
+            <div class="card">
+                <div class="card-header row m-0 ">
+                    <div class="container col-md-3 col-sm-4 col-6 m-0 p-0 ">
+                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="75px" height="75 px">
+                    </div>
+                    <div class="container col-md-9 col-sm-8 col-6 m-0 p-0 ">
+                        <p class="">  Ginie Daince   <span class="" > 10h30 </span></p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a href={{ path("discussion") }} class="stretched-link" ></a>
+                    {{i}}
+                    lorem lispusn felicitases seslsle sjellejkzhbsvgjcxfhv nbqhcvGNCVghvcsg xnBV?cwsbcj vhgvjbdnvxbwc gcnjvhgcxwvxbcvnbcv
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

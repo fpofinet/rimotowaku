@@ -37,8 +37,8 @@ class UtilisateurController extends AbstractController
     }
         // cette methode permet d'ajouter ou de modifier un utilisateur
     /**
-     * @Route("/admin/nouvelUtilisateur", name="add_user")
-     * @Route("/admin/{id}/modification", name="edit_user")
+     * @Route("/utilisateur/nouvelUtilisateur", name="add_user")
+     * @Route("/utilisateur/{id}/modification", name="edit_user")
      */
     public function addOrUpdateUtilisateur(Utilisateurs $user=null,Request $request,UserPasswordEncoderInterface $encoder,
                                             SluggerInterface $slugger)

@@ -24,6 +24,63 @@ body {
     font-size:13px;
 }
 
+/*début des css que j'ai ajouté*/
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 53%;
+}
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 30px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+/* fin des css */
+
 ul li {
     list-style: none;
 }
@@ -402,9 +459,10 @@ ul.sidebar-menu li a.active i {
     border-bottom: 1px solid #393d46;
 }
 
+
 .wrapper {
     display: inline-block;
-    margin-top: 60px;
+    margin-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;

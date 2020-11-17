@@ -11,28 +11,37 @@
         {% endblock %}
     </head>
     <body height="100%" width="100%">  
-    <div class="row">
-      <div class="container col-lg-2 col-md-2 col-sm-3 col-12 m-0" height="1000px">
-        <div class="sidebar bg-primary">
-          <a class="" href="{{path ('home')}}"> RIMOTOWAKU </a>
-          <a href="{{path ('admin')}}"> Collaborateurs </a>
-          <a href="{{path ('fichier')}}"> Fichiers </a>
+		<div class="sidebar bg-primary">
+          <a class="" href="{{path ('home')}}">
+            <i class="fa fa-home" aria-hidden="true" style="font-size: 1.5em;"></i>
+          <span>RIMOTOWAKU</span>
+        </a>
+          <a href="{{path ('admin')}}">
+            <i class="fa fa-users" aria-hidden="true" style="font-size: 1.5em;"></i> 
+              <span>Collaborateurs</span>
+          </a>
+          <a href="{{path ('fichier')}}">
+            <i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 1.5em;"></i>
+              <span>Fichiers</span>
+          </a>
           
-          <a class="" href="{{ path('app_logout') }}">Deconnexion</a>
+          <a class="" href="{{ path('app_logout') }}">
+            <i class="fa fa-sign-out" aria-hidden="true" style="font-size: 1.5em;"></i>
+            <span>Deconnexion</span>
+          </a>
               {% if app.user %}
                 <a class="" href={{ path("show_user", {'id':app.user.id})  }}>
-                  <div class="">
-                      {{ app.user.nom }}
-                  </div> </a>
+                    <i class="fa fa-user" aria-hidden="true" style="font-size: 1.5em;"></i>
+                      <span>{{ app.user.nom }}</span>
+                   </a>
               {% endif %}
           </a>
         </div>
-      </div>
-      <div class="container col-lg-10 col-md-10 col-sm-9 col-12 m-0">
-        {% block body %}{% endblock %}
-      </div>
-      
-    </div>
+      <div class="content">
+
+           {% block body %}{% endblock %}
+          
+        </div>
   <!-- js placed at the end of the document so the pages load faster -->
     
     {% block javascripts %}

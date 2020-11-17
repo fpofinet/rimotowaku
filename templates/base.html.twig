@@ -19,7 +19,6 @@
           <a href="{{path ('fichier')}}"> Fichiers </a>
           
           <a class="" href="{{ path('app_logout') }}">Deconnexion</a>
-           <a class="" href="{{ path('message') }}">Messages</a>
               {% if app.user %}
                 <a class="" href={{ path("show_user", {'id':app.user.id})  }}>
                   <div class="">

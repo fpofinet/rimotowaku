@@ -3,38 +3,77 @@
 <div class="row">
     <div class="container col-10 p-0">
         <div class=" container col-9">
-           
-                {% for i in 0..15%}
-                    {% if i%2==0 %}
-                    <div class="col-8 float-left" style="color : #ffffff">
-                        <div class="border shadow mx-0 my-1 rounded-top rounded-right bg-primary " height="100">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua 
-                            </p>
+                    <div class="col-8" >
+                        <div class=" border shadow mx-0 my-1 rounded-top rounded-right bg-light" id="messageContent">
+
                         </div>
                     </div>
-                    {% else %}
-                    <div class="col-8 float-right" >
-                        <div class=" border shadow mx-0 my-1 rounded-top rounded-right bg-light " >
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua 
-                            </p>
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
                 <div class="container col-12 my-3">
                     <form action="" method="" class="">
+                        <input type="hidden" name="receiver" id="receiver" value={{receiver.id}}>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="messageContent" placeholder="ecrivez votre message...">
+                            <input type="text" class="form-control" id="mesCont" name="messageContent" placeholder="ecrivez votre message...">
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="btnSend" class="btn btn-primary" value="envoyer">
+                            <input type="submit" name="btnSend" class="btn btn-primary" value="envoyer" id="send">
                         </div>
                     </form>
                 </div>
-            
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+   <script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script >
+        function getMessages () {
+            $.ajax({  
+               url:        '/getmess',  
+               type:       'GET',   
+               dataType:   'json',  
+               async:      true,  
+               success: function(data, status) { 
+                   //console.log(data)
+                   var  messages='';
+                   var content= document.querySelector("#messageContent");
+                   for(var i=0; i<data.length;i++){
+                       message=data[i]
+                       messages +='<p>'+ message.content+'</p>';
+                    }  
+                    content.innerHTML=messages;
+               }
+            })
+        }
+
+        function  sendMessages() {
+          var form ={'contenue': document.querySelector("#mesCont").value,
+                     'receiver' :document.querySelector("#receiver").value  
+                    };
+            console.log(form);
+            $.ajax({  
+               url:        '/send',  
+               type:       'POST',   
+               dataType:   'json',  
+               data :       form,
+               async:      true,  
+               success: function(data) { 
+                   // console.log("icic");
+               }
+            });
+            getMessages();
+        }
+
+        $(document).ready(function(){   
+            getMessages();
+            var btnSend=document.querySelector("form");
+            btnSend.addEventListener('submit',function(e) {
+                e.preventDefault();
+                sendMessages();
+                document.querySelector("#mesCont").value='';
+            });
+           var qq = setInterval(getMessages, 5000) 
+        });
+      
+        
+    </script>
 {% endblock %}

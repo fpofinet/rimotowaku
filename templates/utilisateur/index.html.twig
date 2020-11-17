@@ -26,7 +26,7 @@
         <td>{{utilisateur.prenom}}</td>
 
         <td>{{utilisateur.fonction}}</td>
-
+        <td><a href={{ path("discussion",{'id':utilisateur.id})  }} class="btn"> Discussions </a></td>
         <td><a href={{ path("show_user", {'id':utilisateur.id})  }} class="btn btn-primary">...</a></td>
         </tr>
     {% endfor %}

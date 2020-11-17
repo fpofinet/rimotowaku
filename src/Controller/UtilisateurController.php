@@ -53,6 +53,7 @@ class UtilisateurController extends AbstractController
         //validation du formulaire
         if( $form->isSubmitted() &&  $form->isValid()){
             $profil = $form->get('profil')->getData();
+            //on teste si la variable profil contient des donnees
             if ($profil) {
                 $originalFilename = pathinfo($profil->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
@@ -103,12 +104,4 @@ class UtilisateurController extends AbstractController
             'utilisateur' => $utilisateur
         ]);
     }
-    // cette  methode permet au utilisateurs de se connecter
-    /**
-     * @Route("/connexion",name="login_route")
-     */
-    public function login(){
-        return $this->render('utilisateur/login.html.twig');
-    }
-    
 }
